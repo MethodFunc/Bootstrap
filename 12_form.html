@@ -13,11 +13,11 @@
 
 <div class="container">
   <h2>Stacked form</h2>
-  <!-- 서버 프로그램에서 동작? 하여라 action="/action_page.php" -->
+  <!-- 서버 프로그램에서 동작? 하여라 action="/action_page.php"  method는 기본값이 POST이므로 생략 가능-->
   <form action="/action_page.php" method="POST">
     <div class="form-group">
       <label for="uid">Email:</label>
-      <input type="text" class="form-control" id="uid" placeholder="Enter your email" name="email">
+      <input type="text" class="form-control" id="uid" placeholder="Enter your email" name="uid">
     </div>
     <div class="form-group">
       <label for="pwd">Password:</label>
@@ -33,5 +33,29 @@
   </form>
 </div>
 
+<hr>
+<div class="container">
+    <h2>Stacked form</h2>
+    <!-- 서버 프로그램에서 동작? 하여라 action="/action_page.php"  method는 기본값이 POST이므로 생략 가능-->
+    <form class = "form-inline" action="/action_page.php" method="POST">
+      <div class="form-group">
+        <label for="uid">Email:</label>
+        <input type="text" class="form-control" id="uid" placeholder="Enter your email" name="uid">
+      </div>
+      <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
+      </div>
+      <div class="form-group form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" name="remember"> Remember me
+        </label>
+      </div>
+      <!-- button 대신 input도 가능하다. -->
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+
+  
 </body>
 </html>

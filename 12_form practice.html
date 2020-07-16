@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+  <div class="container">
+    <table class='table table-borderless'>
+      <form class="form-inline" action="/regression" method="POST">
+        <!-- <thead>
+          <tr>
+            <th>분류 - <small>아이리스 Sepal Length 크기는?</small></th>
+          </tr>
+        </thead> -->
+        <tbody>
+          <tr>
+            <td>
+              <label for="slen">Sepal Length:</label>
+              <input type="text" class="form-control" id="slen" placeholder="Sepal Length" name="slen">
+            </td>
+            <td>
+              <label for="plen">Petal Length:</label>
+              <input type="text" class="form-control" id="plen" placeholder="Petal Length" name="plen">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="pwid">Petal width:</label>
+              <input type="text" class="form-control" id="pwid" placeholder="Petal width" name="pwid">
+            </td>
+            <td>
+              <label for="speice">품종 : </label>
+              <input type="text" class="form-control" id="speice" placeholder="품종" name="speice">
+            </td>
+          </tr>
+          <tr>
+            <td style="float: right">
+              <button type="submit" class="btn btn-primary">확인</button>
+            </td>
+            <td>
+              <button type="reset" class="btn btn-danger">취소</button>
+            </td>
+          </tr>
+        </tbody>
+      </form>
+    </table>
+  </div>
+
+
+</body>
+
+</html>
