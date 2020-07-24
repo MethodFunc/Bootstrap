@@ -1,0 +1,85 @@
+<!doctype html>
+
+<html lang="ko">
+
+<head>
+  <title>Team-BG</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+  <script src="{{ url_for('static', filename='js/jquery-3.5.1.min.js') }}"></script>
+  <script src="{{url_for('static', filename='js/popper.min.js')}}"></script>
+  <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+    <a href="#"><img src="{{ url_for('static', filename='img/logo2.png') }}" alt='Home'></a>
+    <!-- <a class="navbar-brand" href="#">Team - BG</a> -->
+    <div>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./Introduce.html">Introduce</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Mechine Learining</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="./Deep Learning.html">Deep Learning</a>
+        </li>
+        <!-- <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">Members</a>
+          <div class="dropdown-menu" aria-labelledby="dropdown01">
+            <a class="dropdown-item" href="#">JSG(Team Leader)</a>
+            <a class="dropdown-item" href="#">JHC</a>
+            <a class="dropdown-item" href="#">JSG</a>
+          </div>
+        </li> -->
+        <li class="navbar-text" id="clock">
+          {{today}}
+      </li>
+      </ul>
+      
+    </div>
+  </nav>
+  <div class='container'>
+    <div class="row" style="margin-top: 4.5em;">
+      <div class="col-3">
+        <ul class="nav flex-column nav-pills">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Regression</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Classification</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Clustering</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">.</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-9">
+        <h3>{% block subtitle %}{% endblock %}</h3>
+        <hr>
+
+        {% block content %}
+        {% endblock %}
+      </div>
+      {%include 'inc/clock.html'%}
+</body>
+
+<footer>
+  <nav class="navbar navbar-expand-sm bg-light navbar-light fixed-bottom justify-content-end">
+    <span class="navbar-text">
+      Copyright &copy; 2020 AI Innovator
+    </span>
+  </nav>
+</footer>
+
+</html>

@@ -1,0 +1,55 @@
+{% extends "./team_web/layout.html" %}
+{% block subtitle %}
+<strong>다중 선형 회귀 </strong> - <small>Iris Sepal Width는?</small>
+{% endblock %}
+
+{% block content %}
+<div class="col-9">
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-6">
+        <form action="/iris" method="POST">
+          <table class="table table-borderless">
+            <tr>
+              <td>Sepal Length</td>
+              </td>
+              <td>
+                <input type=" text" class="form-control" id="slen" placeholder="Sepal Length" name="slen">
+              </td>
+            </tr>
+            <tr>
+              <td>Petal Length</td>
+              <td>
+                <input type="text" class="form-control" id="plen" placeholder="Petal Length" name="plen">
+              </td>
+            </tr>
+            <tr>
+              <td>Petal Width</td>
+              <td>
+                <input type="text" class="form-control" id="pwid" placeholder="Petal width" name="pwid">
+              </td>
+            </tr>
+            <tr>
+              <td>Select Class</td>
+              <td>
+                <select class="form-control" id="sel1" name='sel1'>
+                  <option value="0" selected>Setosa</option>
+                  <option value="1">Versicolor</option>
+                  <option value="2">virginica</option>
+              </td>
+              </select>
+            </tr>
+            <tr>
+              <td colspan="2" style="text-align: center;">
+                <button type="submit" class="btn btn-primary">확인</button>
+                <button type="reset" class="btn btn-danger">취소</button>
+              </td>
+            </tr>
+          </table>
+        </form>
+      </div>
+      <div class="col-4"></div>
+    </div>
+  </div>
+</div>
+{% endblock %}

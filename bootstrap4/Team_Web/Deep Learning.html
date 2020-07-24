@@ -1,0 +1,126 @@
+<!doctype html>
+
+<html lang="ko">
+
+<head>
+  <title>Team-BG</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+    <img src='../img/logo2.png'>
+    <!-- <a class="navbar-brand" href="#">Team - BG</a> -->
+    <div>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./Introduce.html">Introduce</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Mechine Learining</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="./Deep Learning.html">Deep Learning</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">Members</a>
+          <div class="dropdown-menu" aria-labelledby="dropdown01">
+            <a class="dropdown-item" href="#">JSG(Team Leader)</a>
+            <a class="dropdown-item" href="#">JHC</a>
+            <a class="dropdown-item" href="#">JSG</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class='container'>
+    <div class="row" style="margin-top: 4.5em;">
+      <div class="col-3">
+        <ul class="nav flex-column nav-pills">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Regression</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Classification</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Clustering</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">.</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-9">
+        <h3>다중 선형 회귀 - <small>Iris Sepal Width는?</small></h3>
+        <hr>
+        <div class="row">
+          <div class="col-2"></div>
+          <div class="col-6">
+            <form action="/regression" method="POST">
+              <table class="table table-borderless"">
+              <tr>
+                <td>Sepal Length</td>
+            </td>
+            <td>
+              <input type=" text" class="form-control" id="slen" placeholder="Sepal Length" name="slen">
+                </td>
+                </tr>
+                <tr>
+                  <td>Petal Length</td>
+                  <td>
+                    <input type="text" class="form-control" id="plen" placeholder="Petal Length" name="plen">
+                  </td>
+                </tr>
+                <tr>
+                  <td>Petal Width</td>
+                  <td>
+                    <input type="text" class="form-control" id="pwid" placeholder="Petal width" name="pwid">
+                  </td>
+                </tr>
+                <tr>
+                  <td>Select Class</td>
+                  <td>
+                    <select class="form-control" id="sel1">
+                      <option value="0" selected>Setosa</option>
+                      <option value="1">Versicolor</option>
+                      <option value="2">virginica</option>
+                  </td>
+                  </select>
+                </tr>
+                <tr>
+                  <td colspan="2" style="text-align: center;">
+                    <button type="submit" class="btn btn-primary">확인</button>
+                    <button type="reset" class="btn btn-danger">취소</button>
+                  </td>
+                </tr>
+              </table>
+            </form>
+          </div>
+          <div class="col-4"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+<footer>
+  <nav class="navbar navbar-expand-sm bg-light navbar-light fixed-bottom justify-content-end">
+    <span class="navbar-text">
+      Copyright &copy; 2020 AI Innovator
+    </span>
+  </nav>
+</footer>
+
+</html>
