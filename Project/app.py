@@ -1,17 +1,27 @@
 from flask import Flask, render_template, request
+import os
 
 app = Flask(__name__)
 
 
 @app.route('/')
 def index():
-    menu = {'home': True, 'rgrs': False, 'stmt': False, 'clsf': False, 'clst': False, 'user': False}
+    menu = {'home': True, 'intro':False, 'rgrs': False, 'stmt': False, 'clsf': False, 'clst': False, 'user': False}
     return render_template('home.html', menu=menu)
 
+@app.route('/introduce')
+def intro():
+    menu = {'home': False, 'intro':True, 'rgrs': False, 'stmt': False, 'clsf': False, 'clst': False, 'user': False}
+    return render_template('introduce.html', menu=menu)
+
+@app.route('/introduce/kpj')
+def kpj():
+    menu = {'home': False, 'intro':True, 'rgrs': False, 'stmt': False, 'clsf': False, 'clst': False, 'user': False}
+    return render_template(os.path.join(app.root_path, '/user/kpj.html'), menu=menu)
 
 @app.route('/regression', methods=['GET', 'POST'])
 def regression():
-    menu = {'home': False, 'rgrs': True, 'stmt': False, 'clsf': False, 'clst': False, 'user': False}
+    menu = {'home': False, 'intro':False, 'rgrs': True, 'stmt': False, 'clsf': False, 'clst': False, 'user': False}
 
     if request.method == 'GET':
         return render_template('regression.html', menu=menu)
@@ -33,25 +43,25 @@ def regression():
 
 @app.route('/sentiment')
 def sentiment():
-    menu = {'home': False, 'rgrs': False, 'stmt': True, 'clsf': False, 'clst': False, 'user': False}
+    menu = {'home': False, 'intro':True, 'rgrs': False, 'stmt': True, 'clsf': False, 'clst': False, 'user': False}
     return render_template('sentiment.html', menu=menu)
 
 
 @app.route('/classification')
 def classification():
-    menu = {'home': False, 'rgrs': False, 'stmt': False, 'clsf': True, 'clst': False, 'user': False}
+    menu = {'home': False, 'intro':True, 'rgrs': False, 'stmt': False, 'clsf': True, 'clst': False, 'user': False}
     return render_template('classification.html', menu=menu)
 
 
 @app.route('/clustering')
 def clustering():
-    menu = {'home': False, 'rgrs': False, 'stmt': False, 'clsf': False, 'clst': True, 'user': False}
+    menu = {'home': False, 'intro':True, 'rgrs': False, 'stmt': False, 'clsf': False, 'clst': True, 'user': False}
     return render_template('clustering.html', menu=menu)
 
 
 @app.route('/user')
 def user():
-    menu = {'home': False, 'rgrs': False, 'stmt': False, 'clsf': False, 'clst': False, 'user': True}
+    menu = {'home': False, 'intro':True, 'rgrs': False, 'stmt': False, 'clsf': False, 'clst': False, 'user': True}
     return render_template('user.html', menu=menu)
 
 

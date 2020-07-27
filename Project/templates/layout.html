@@ -1,0 +1,98 @@
+<!doctype html>
+
+<html lang="ko">
+
+<head>
+  <title>Team-BG</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+  <script src="{{ url_for('static', filename='js/jquery-3.5.1.min.js') }}"></script>
+  <script src="{{url_for('static', filename='js/popper.min.js')}}"></script>
+  <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+  <a href="#"><img src="{{ url_for('static', filename='images/logo3.png') }}" alt='Home'></a>
+  <!-- <a class="navbar-brand" href="#">Team - BG</a> -->
+  <div>
+    <ul class="navbar-nav mr-auto">
+
+      <li class="nav-item">
+        <a class="nav-link {% if menu.home %} active {% endif %}" href="{% if menu.home %} #  {% else %} / {% endif %}">Home</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link{% if menu.intro %} active {% endif %}" href="{% if menu.intro %} # {% else %} /introduce {% endif %}">Introduce</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link {% if menu.rgrs %} active {% endif %}" href="{% if menu.rgrs %} # {% else %} /regression {% endif %}">회귀</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {% if menu.stmt %} active {% endif %}" href="{% if menu.stmt %} # {% else %} /sentiment {% endif %}">감성분석</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {% if menu.clsf %} active {% endif %}" href="{% if menu.clsf %} # {% else %} /classification {% endif %}">분류</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {% if menu.clst %} active {% endif %}" href="{% if menu.clst %} # {% else %} /clustering {% endif %}">군집</a>
+      </li>
+
+      <!-- <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">Members</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="dropdown-item" href="#">JSG(Team Leader)</a>
+          <a class="dropdown-item" href="#">JHC</a>
+          <a class="dropdown-item" href="#">JSG</a>
+        </div>
+      </li> -->
+      <!--      <li class="navbar-text" id="clock">-->
+      <!--        {{today}}-->
+      <!--      </li>-->
+    </ul>
+
+  </div>
+</nav>
+<div class='container'>
+  <div class="row" style="margin-top: 4.5em;">
+    <div class="col-2">
+      <!--      <ul class="nav flex-column nav-pills">-->
+      <!--        <li class="nav-item">-->
+      <!--          <a class="nav-link {% if menu.rgrs %} active {% endif %}" href="{% if menu.rgrs %} # {% else %} /regression {% endif %}">회귀</a>-->
+      <!--        </li>-->
+      <!--        <li class="nav-item">-->
+      <!--          <a class="nav-link {% if menu.stmt %} active {% endif %}" href="{% if menu.stmt %} # {% else %} /sentiment {% endif %}">감성분석</a>-->
+      <!--        </li>-->
+      <!--        <li class="nav-item">-->
+      <!--          <a class="nav-link {% if menu.clsf %} active {% endif %}" href="{% if menu.clsf %} # {% else %} /classification {% endif %}">분류</a>-->
+      <!--        </li>-->
+      <!--        <li class="nav-item">-->
+      <!--          <a class="nav-link {% if menu.clst %} active {% endif %}" href="{% if menu.clst %} # {% else %} /clustering {% endif %}">군집</a>-->
+      <!--        </li>-->
+      <!--      </ul>-->
+      <!--    </div>-->
+    </div>
+    <div class="col-10">
+      <h3>{% block subtitle %}{% endblock %}</h3>
+      <hr>
+
+      {% block content %}
+      {% endblock %}
+    </div>
+<!--    {%include 'inc/clock.html'%}-->
+  </div>
+</div>
+</body>
+
+<footer>
+  <nav class="navbar navbar-expand-sm bg-light navbar-light fixed-bottom justify-content-end">
+    <span class="navbar-text">
+      Copyright &copy; 2020 AI Innovator
+    </span>
+  </nav>
+</footer>
+
+</html>
