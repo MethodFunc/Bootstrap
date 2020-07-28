@@ -6,7 +6,7 @@ import re
 from flask import Flask, render_template, request
 from werkzeug import secure_filename
 from konlpy.tag import Okt
-from keras.models import load_model
+from tensorflow.keras.models import load_model
 from PIL import Image
 from keras.applications.vgg16 import VGG16, decode_predictions
 from clu_util import clustering_util
@@ -63,6 +63,11 @@ def load_iris():
     model_iris_dt = joblib.load(os.path.join(app.root_path, 'models/iris_dt.pkl'))
     model_iris_deep = load_model(os.path.join(app.root_path, 'models/iris_deep.hd5'))
 
+model_indians = None
+
+def load_indians():
+    global  model_indians
+    model_indians = load_model(os.path.join(app.root_path, 'models/best_model.hdf5'))
 
 @app.route('/')
 def index():
@@ -163,6 +168,29 @@ def classification_iris():
                 'species_dt': species_dt, 'species_deep': species_deep}
         return render_template('cla_iris_result.html', menu=menu, iris=iris)
 
+@app.route('/classification_indians', methods=['GET', 'POST'])
+def classification_indians():
+    menu = {'home': False, 'intro':False, 'rgrs': False, 'stmt': False, 'clsf': True, 'clst': False, 'user': False}
+    if request.method == 'GET':
+        return render_template('classification_indians.html', menu=menu)
+    else:
+        sp_names = ['당뇨 아님', '당뇨']
+        pregnant = int(request.form['pregnant'])
+        plasma = int(request.form['plasma'])
+        pressure = int(request.form['pressure'])
+        thickness = int(request.form['thickness'])
+        insulin = int(request.form['insulin'])
+        BMI = float(request.form['bmi'])
+        pedigree = float(request.form['pedigree'])
+        age = int(request.form['age'])
+
+        test_data = np.array([pregnant, plasma, pressure, thickness, insulin, BMI, pedigree, age]).reshape(1, 8)
+        results = sp_names[model_indians.predict_classes(test_data)[0][0]]
+
+        indians = {'pregnant': pregnant, 'plasma': plasma, 'pressure': pressure, 'thickness': thickness,
+                'insulin': insulin, 'bmi': BMI,
+                'pedigree': pedigree, 'age':age, 'result': results}
+        return render_template('clf_indians_result.html', menu=menu, indians=indians)
 
 @app.route('/clustering', methods=['GET', 'POST'])
 def clustering():
@@ -186,4 +214,5 @@ if __name__ == '__main__':
     load_movie_lr()
     load_movie_nb()
     load_iris()
-    app.run()
+    load_indians()
+    app.run(host='0.0.0.0')
