@@ -1,14 +1,15 @@
-from flask import Flask, render_template, request
-from werkzeug import secure_filename
 import os
 import joblib
 import numpy as np
-import pandas as pd
 import re
+
+from flask import Flask, render_template, request
+from werkzeug import secure_filename
 from konlpy.tag import Okt
 from keras.models import load_model
 from PIL import Image
 from keras.applications.vgg16 import VGG16, decode_predictions
+from clu_util import clustering_util
 
 app = Flask(__name__)
 app.debug = True
@@ -73,10 +74,11 @@ def intro():
     menu = {'home': False, 'intro':True, 'rgrs': False, 'stmt': False, 'clsf': False, 'clst': False, 'user': False}
     return render_template('Introduce.html', menu=menu)
 
-@app.route('/introduce/kpj')
-def kpj():
+@app.route('/introduce/<name>')
+def user(name = None):
     menu = {'home': False, 'intro':True, 'rgrs': False, 'stmt': False, 'clsf': False, 'clst': False, 'user': False}
-    return render_template(os.path.join(app.root_path, '/user/kpj.html'), menu=menu)
+    nickname = request.args.get('nickname', '별명: 없음')
+    return render_template(os.path.join(app.root_path, '/user/%s.html') % name, menu=menu, name=name, nickname=nickname)
 
 @app.route('/regression', methods=['GET', 'POST'])
 def regression():
@@ -162,10 +164,22 @@ def classification_iris():
         return render_template('cla_iris_result.html', menu=menu, iris=iris)
 
 
-@app.route('/clustering')
+@app.route('/clustering', methods=['GET', 'POST'])
 def clustering():
     menu = {'home': False, 'intro':False, 'rgrs': False, 'stmt': False, 'clsf': False, 'clst': True, 'user': False}
-    return render_template('clustering.html', menu=menu)
+    if request.method == 'GET':
+        return render_template('clustering.html', menu=menu)
+    else:
+        f = request.files['csv']
+        filename = os.path.join(app.root_path, 'static/images/uploads/') + secure_filename(f.filename)
+        f.save(filename)
+        ncls = int(request.form['K'])
+
+        clustering_util(app, secure_filename(f.filename), ncls)
+        img_file = os.path.join(app.root_path, 'static/images/kmc.png')
+        mtime = int(os.stat(img_file).st_mtime)
+
+        return render_template('clustering_result.html', menu=menu, K=ncls, mtime=mtime)
 
 
 if __name__ == '__main__':
