@@ -18,7 +18,11 @@ vgg = VGG16()
 okt = Okt()
 movie_lr = None
 movie_lr_dtm = None
+model_mnist = None
 
+def mnist_load():
+    global model_mnist
+    model_mnist = load_model(os.path.join(app.root_path, 'models/mnist_best_models.hdf5'))
 
 def load_movie_lr():
     global movie_lr, movie_lr_dtm
@@ -125,7 +129,7 @@ def sentiment():
         result_nb = res_str[movie_nb.predict(review_nb_dtm)[0]]
         # 결과 처리
         movie = {'review': review, 'result_lr': result_lr, 'result_nb': result_nb}
-        return render_template('sentiment_result.html', menu=menu, movie=movie)
+        return render_template('senti_result.html', menu=menu, movie=movie)
 
 
 @app.route('/classification', methods=['GET', 'POST'])
@@ -134,15 +138,18 @@ def classification():
     if request.method == 'GET':
         return render_template('classification.html', menu=menu)
     else:
-        f = request.files['image']
-        filename = os.path.join(app.root_path, 'static/images/uploads') + secure_filename(f.filename)
-        f.save(filename)
+        try:
+            f = request.files['image']
+            filename = os.path.join(app.root_path, 'static/images/uploads') + secure_filename(f.filename)
+            f.save(filename)
 
-        img = np.array(Image.open(filename).resize((224, 224)))
-        yhat = vgg.predict(img.reshape(-1, 224, 224, 3))
-        label_key = np.argmax(yhat)
-        label = decode_predictions(yhat)
-        label = label[0][0]
+            img = np.array(Image.open(filename).resize((224, 224)))
+            yhat = vgg.predict(img.reshape(-1, 224, 224, 3))
+            label_key = np.argmax(yhat)
+            label = decode_predictions(yhat)
+            label = label[0][0]
+        except:
+            return render_template('classification.html', menu=menu)
 
         return render_template('cla_result.html', menu=menu, filename=secure_filename(f.filename), name=label[1],
                                pct='%.2f' % (label[2] * 100))
@@ -154,19 +161,24 @@ def classification_iris():
         return render_template('classification_iris.html', menu=menu)
     else:
         sp_names = ['Setosa', 'Versicolor', 'Virginica']
+
         slen = float(request.form['slen'])  # Sepal Length
         swid = float(request.form['swid'])  # Sepal Width
         plen = float(request.form['plen'])  # Petal Length
         pwid = float(request.form['pwid'])  # Petal Width
+
         test_data = np.array([slen, swid, plen, pwid]).reshape(1, 4)
+
         species_lr = sp_names[model_iris_lr.predict(test_data)[0]]
         species_svm = sp_names[model_iris_svm.predict(test_data)[0]]
         species_dt = sp_names[model_iris_dt.predict(test_data)[0]]
         species_deep = sp_names[model_iris_deep.predict_classes(test_data)[0]]
+
         iris = {'slen': slen, 'swid': swid, 'plen': plen, 'pwid': pwid,
                 'species_lr': species_lr, 'species_svm': species_svm,
                 'species_dt': species_dt, 'species_deep': species_deep}
-        return render_template('cla_iris_result.html', menu=menu, iris=iris)
+
+        return render_template('classification_result.html', menu=menu, iris=iris)
 
 @app.route('/classification_indians', methods=['GET', 'POST'])
 def classification_indians():
@@ -175,6 +187,7 @@ def classification_indians():
         return render_template('classification_indians.html', menu=menu)
     else:
         sp_names = ['당뇨 아님', '당뇨']
+
         pregnant = int(request.form['pregnant'])
         plasma = int(request.form['plasma'])
         pressure = int(request.form['pressure'])
@@ -191,6 +204,26 @@ def classification_indians():
                 'insulin': insulin, 'bmi': BMI,
                 'pedigree': pedigree, 'age':age, 'result': results}
         return render_template('clf_indians_result.html', menu=menu, indians=indians)
+
+
+# @app.route('/mnist', methods=['GET', 'POST'])
+# def classification():
+#     menu = {'home': False, 'intro':False, 'rgrs': False, 'stmt': False, 'clsf': True, 'clst': False, 'user': False}
+#     if request.method == 'GET':
+#         return render_template('mnist.html', menu=menu)
+#     else:
+#         try:
+#             f = request.files['image']
+#             filename = os.path.join(app.root_path, 'static/images/uploads') + secure_filename(f.filename)
+#             f.save(filename)
+#
+#             img = Image.open(filename)
+#             name = model_mnist.predict_classes(img.reshape(1, 784))[0][0]
+#         except:
+#             return render_template('mnist.html', menu=menu)
+#
+#         return render_template('mnist_result.html', menu=menu, filename=secure_filename(f.filename), name=name)
+#
 
 @app.route('/clustering', methods=['GET', 'POST'])
 def clustering():
@@ -215,4 +248,6 @@ if __name__ == '__main__':
     load_movie_nb()
     load_iris()
     load_indians()
+    mnist_load()
+    # app.run()
     app.run(host='0.0.0.0')

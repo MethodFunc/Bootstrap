@@ -2,61 +2,118 @@
 <!--{% block subtitle %}Introduce{% endblock %}-->
 
 {% block content %}
-<div class="row">
-  <div class="col-lg-4"></div>
-  <div class="col-lg-4">
-    <div class="card" style="width:350px">
-      <img class="card-img-top" src="https://avatars2.githubusercontent.com/u/52202004?s=400&u=5d32125973bd49e604990884e4711aa2f6df866a&v=4" alt="Card image">
-      <div class="card-body">
-        <h4 class="card-title">정승기</h4>
-        <p class="card-text"><strong>Team Leader</strong></p>
-        <a href="#" class="btn btn-dark">See Profile</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-lg-4"></div>
-</div>
-<hr>
-<div class="row">
+<head>
+    <style>
+        body {
+            position: relative;
+        }
 
-  <div class="col-lg-4">
-    <div class="card" style="width:350px">
-      <img class="card-img-top" src="https://nsimg.kbs.co.kr/data/news/2019/11/20/4327665_Fe2.jpg" alt="Card image", height="348">
-      <div class="card-body">
-        <h4 class="card-title">조현철</h4>
-        <p class="card-text">Team Members</p>
-        <a href="#" class="btn btn-dark">See Profile</a>
-      </div>
+        ul.nav-pills {
+            top: 20px;
+            position: fixed;
+        }
+
+        div.col-8 div {
+            height: 500px;
+        }
+    </style>
+</head>
+
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
+<div class="container-fluid" style="padding-top: 5%;padding-bottom: 10%">
+    <div class="row">
+        <nav class="col-sm-3 col-4" id="myScrollspy">
+            <ul class="nav nav-pills flex-column" style="padding-top: 5%">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#section1">정승기</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#section2">조현철</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#section3">곽필종</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#section4">조승기</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="col-sm-9 col-8">
+            <div id="section1" class="bg">
+                <table class="table" aria-rowspan="3">
+                    <tr>
+                        <td>
+                            <img src="https://avatars2.githubusercontent.com/u/52202004?s=400&u=5d32125973bd49e604990884e4711aa2f6df866a&v=4"
+                                 width="300px" height="300px">
+                        </td>
+                        <td><h3>이름 : </h3></td>
+                        <td><h3>정승기</h3></td>
+                      <tr>
+                        <td><h3>Team Leader</h3></td>
+                    </tr>
+                        <td><a href="/introduce/정승기" class="btn btn-dark">See Profile</a></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="section2" class="bg">
+                <table class="table">
+                    <tr>
+                        <td>
+                            <img src="https://nsimg.kbs.co.kr/data/news/2019/11/20/4327665_Fe2.jpg" width="300px"
+                                 height="300px">
+                        </td>
+                        <td><h1>조현철</h1></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p><strong>Team Member</strong></p>
+                        </td>
+                        <td><a href="/introduce/조현철" class="btn btn-dark">See Profile</a></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="section3" class="bg">
+                <table class="table">
+                    <tr>
+                        <td>
+                            <img src="https://avatars0.githubusercontent.com/u/52646895?s=400&u=a72621251c5626392a83926e98b87c8fa62f4a22&v=4"
+                                 width="300px" height="300px">
+                        </td>
+                        <td><h1>곽필종</h1></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p><strong>Team Member</strong></p>
+                        </td>
+                        <td><a href="/introduce/곽필종" class="btn btn-dark">See Profile</a></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="section4" class="bg">
+                <table class="table">
+                    <tr>
+                        <td>
+                            <img src="https://avatars1.githubusercontent.com/u/66045332?s=400&u=0a5c453ee898eddf011c0ee94628ff6ea1fe8493&v=4"
+                                 width="300px" height="300px">
+                        </td>
+                        <td><h1>조승기</h1></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p><strong>Team Member</strong></p>
+                        </td>
+                        <td><a href="/introduce/조승기" class="btn btn-dark">See Profile</a></td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
     </div>
-  </div>
-  <div class="col-lg-4">
-    <div class="card" style="width:350px">
-      <img class="card-img-top" src="https://avatars0.githubusercontent.com/u/52646895?s=400&u=a72621251c5626392a83926e98b87c8fa62f4a22&v=4" alt="Card image">
-      <div class="card-body">
-        <h4 class="card-title">곽필종</h4>
-        <p class="card-text">Team Members</p>
-        <a href="/introduce/kpj?nickname='Drop the beat'" class="btn btn-dark">See Profile</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-lg-4">
-    <div class="card" style="width:350px">
-      <img class="card-img-top" src="https://avatars1.githubusercontent.com/u/66045332?s=400&u=0a5c453ee898eddf011c0ee94628ff6ea1fe8493&v=4" alt="Card image">
-      <div class="card-body">
-        <h4 class="card-title">조승기</h4>
-        <p class="card-text">Team Members</p>
-        <a href="#" class="btn btn-dark">See Profile</a>
-      </div>
-    </div>
-  </div>
 </div>
-</div>
-</div>
-</div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
+
 {% endblock %}
